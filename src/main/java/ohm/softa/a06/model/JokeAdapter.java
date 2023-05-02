@@ -16,19 +16,7 @@ public class JokeAdapter extends TypeAdapter<Joke> {
 
 	@Override
 	public Joke read(JsonReader in) throws IOException {
-		final Joke j = new Joke();
-		in.beginObject();
-		while (in.hasNext()) {
-			switch (in.nextName()) {
-				case "id":
-					j.setIdentifier(in.nextString());
-					break;
-				case "value":
-					j.setContent(in.nextString());
-				case "categories":
-					j.setRubrics();
-			}
-		}
-		return null;
+		Gson gson = new Gson();
+		return gson.fromJson(in, Joke.class);
 	}
 }
